@@ -21,7 +21,6 @@ public class Controlador {
            // vista.c1.show(vista.pc, "mk");
       });
 
-      //Usuarios: la pantalla se crea solo la primera vez y despues solo se muestra
       vista.usuarios.addActionListener(e -> {
           if (usuariosVista == null) {
               usuariosVista = new UsuarioVista();

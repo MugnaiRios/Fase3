@@ -7,16 +7,13 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
-// DAO: aqui van las consultas SQL de la tabla usuario (Create, Read, Update, Delete)
 public class UsuarioDAO extends Conexion implements DAO {
 
-    // Codigos que regresan los metodos para que el controlador sepa que paso
     public static final int OK = 1;
     public static final int ERROR = 0;
-    public static final int DUPLICADO = -1;      // correo repetido (UNIQUE)
-    public static final int TIENE_REGISTROS = -2; // tiene cotizaciones, polizas o cancelaciones (FK)
+    public static final int DUPLICADO = -1;
+    public static final int TIENE_REGISTROS = -2;
 
-    //CREATE: inserta un usuario nuevo
     @Override
     public int create(Object obj) {
         Usuario u = (Usuario) obj;
@@ -42,7 +39,6 @@ public class UsuarioDAO extends Conexion implements DAO {
         }
     }
 
-    //READ: regresa todos los usuarios
     @Override
     public List read() {
         List<Usuario> lista = new ArrayList<>();
@@ -69,7 +65,6 @@ public class UsuarioDAO extends Conexion implements DAO {
         return lista;
     }
 
-    //UPDATE: modifica un usuario existente (se busca por idUsuario)
     @Override
     public int update(Object obj) {
         Usuario u = (Usuario) obj;
@@ -95,7 +90,6 @@ public class UsuarioDAO extends Conexion implements DAO {
         }
     }
 
-    //DELETE: elimina un usuario. Si ya tiene registros ligados, MySQL no lo deja (ON DELETE RESTRICT)
     @Override
     public int delate(Object obj) {
         Usuario u = (Usuario) obj;

@@ -20,7 +20,6 @@ public class Bienvenida extends JFrame{
     protected JMenuItem clientes;
     protected JMenuItem usuarios;
     protected JPanel ps;
-    //panel central: aqui se cambian las pantallas (usuarios, clientes, ...)
     protected JPanel pc;
     protected CardLayout c1;
 
@@ -40,7 +39,6 @@ public class Bienvenida extends JFrame{
         ps.add(titulo);
         this.add(ps, BorderLayout.NORTH);
 
-        //panel central con CardLayout
         c1 = new CardLayout();
         pc = new JPanel(c1);
         pc.add(new JPanel(), "inicio");

@@ -1,9 +1,7 @@
 package gestor_polizas_usuario;
 
-// Modelo: representa un registro de la tabla usuario
 public class Usuario {
 
-    //atributos (uno por cada columna de la tabla)
     private int idUsuario;
     private String nombre;
     private String correo;
@@ -12,7 +10,6 @@ public class Usuario {
     private String rol;
     private boolean activo;
 
-    //constructores
     public Usuario() {
         this.activo = true;
     }
@@ -28,7 +25,6 @@ public class Usuario {
         this.activo = activo;
     }
 
-    //getters y setters
     public int getIdUsuario() {
         return idUsuario;
     }

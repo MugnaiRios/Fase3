@@ -3,12 +3,11 @@ package gestor_polizas_usuario;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-// Controlador: une la vista con el DAO (lee el formulario, valida y llama al CRUD)
 public class UsuarioControl {
 
     protected UsuarioVista vista;
     protected UsuarioDAO dao;
-    protected List<Usuario> usuarios; // lo que se muestra en la tabla
+    protected List<Usuario> usuarios;
 
     public UsuarioControl(UsuarioVista vista) {
         this.vista = vista;
@@ -30,7 +29,6 @@ public class UsuarioControl {
         });
     }
 
-    //READ: llena la tabla con lo que hay en la base de datos
     private void cargarTabla() {
         usuarios = dao.read();
         vista.modelo.setRowCount(0);
@@ -42,7 +40,6 @@ public class UsuarioControl {
         }
     }
 
-    //CREATE
     private void guardar() {
         Usuario u = leerFormulario();
         if (u == null) {
@@ -60,7 +57,6 @@ public class UsuarioControl {
         }
     }
 
-    //UPDATE
     private void actualizar() {
         if (vista.txtId.getText().isEmpty()) {
             error("Primero selecciona un usuario de la tabla.");
@@ -83,7 +79,6 @@ public class UsuarioControl {
         }
     }
 
-    //DELETE
     private void eliminar() {
         if (vista.txtId.getText().isEmpty()) {
             error("Primero selecciona un usuario de la tabla.");
@@ -110,7 +105,6 @@ public class UsuarioControl {
         }
     }
 
-    //Cuando se da clic en una fila, se pasan sus datos al formulario
     private void seleccionar() {
         int fila = vista.tabla.getSelectedRow();
         if (fila < 0 || fila >= usuarios.size()) {
@@ -144,7 +138,6 @@ public class UsuarioControl {
         vista.txtNombre.requestFocus();
     }
 
-    //Lee y valida el formulario. Si algo esta mal, avisa y regresa null
     private Usuario leerFormulario() {
         String nombre = vista.txtNombre.getText().trim();
         String correo = vista.txtCorreo.getText().trim();

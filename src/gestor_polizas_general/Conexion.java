@@ -15,14 +15,13 @@ public class Conexion {
 
        //metodos
     //Aqui checa si tu informacion deberia ser la misma xdd
-    //characterEncoding=UTF-8 hace que los acentos (Pérez, García) se guarden y lean bien
     public void conectar() throws SQLException {
         try {
             cnx = DriverManager.getConnection(
                     "jdbc:mysql://localhost/gestor_polizas?useUnicode=true&characterEncoding=UTF-8", "root", "");
         } catch (SQLException ex) {
             System.out.println("Error de conexion: " + ex.getMessage());
-            throw ex; // se avisa al DAO para que no intente usar una conexion que no existe
+            throw ex;
         }
 
     }

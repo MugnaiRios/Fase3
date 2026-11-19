@@ -20,10 +20,8 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-// Vista: solo dibuja la pantalla. Los eventos de los botones estan en UsuarioControl
 public class UsuarioVista extends JPanel {
 
-    //campos del formulario
     protected JTextField txtId;
     protected JTextField txtNombre;
     protected JTextField txtCorreo;
@@ -32,13 +30,11 @@ public class UsuarioVista extends JPanel {
     protected JComboBox<String> cbRol;
     protected JCheckBox chkActivo;
 
-    //botones
     protected JButton btnGuardar;
     protected JButton btnActualizar;
     protected JButton btnEliminar;
     protected JButton btnLimpiar;
 
-    //tabla
     protected JTable tabla;
     protected DefaultTableModel modelo;
 
@@ -66,7 +62,7 @@ public class UsuarioVista extends JPanel {
         g.anchor = GridBagConstraints.WEST;
 
         txtId = new JTextField(6);
-        txtId.setEditable(false); // el id lo pone MySQL (AUTO_INCREMENT)
+        txtId.setEditable(false);
         txtNombre = new JTextField(20);
         txtCorreo = new JTextField(20);
         txtTelefono = new JTextField(12);
@@ -109,11 +105,10 @@ public class UsuarioVista extends JPanel {
     }
 
     private JScrollPane tabla() {
-        // La contraseña no se muestra en la tabla
         modelo = new DefaultTableModel(new Object[]{"ID", "Nombre", "Correo", "Teléfono", "Rol", "Activo"}, 0) {
             @Override
             public boolean isCellEditable(int fila, int columna) {
-                return false; // la tabla es solo para ver; se edita en el formulario
+                return false;
             }
         };
         tabla = new JTable(modelo);
