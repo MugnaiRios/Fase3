@@ -15,20 +15,35 @@ public class Conexion {
 
        //metodos
     //Aqui checa si tu informacion deberia ser la misma xdd
-    public void conectar() {
+    //characterEncoding=UTF-8 hace que los acentos (Pérez, García) se guarden y lean bien
+    public void conectar() throws SQLException {
         try {
-            cnx = DriverManager.getConnection("jdbc:mysql://localhost/gestor_polizas", "root", "");
+            cnx = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/gestor_polizas?useUnicode=true&characterEncoding=UTF-8", "root", "");
         } catch (SQLException ex) {
-            System.getLogger("Error de conexion.");
+            System.out.println("Error de conexion: " + ex.getMessage());
+            throw ex; // se avisa al DAO para que no intente usar una conexion que no existe
         }
 
     }
 
     public void close() {
         try {
-            cnx.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (cnx != null) {
+                cnx.close();
+            }
         } catch (SQLException ex) {
             System.getLogger(Conexion.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        } finally {
+            rs = null;
+            ps = null;
+            cnx = null;
         }
     }
 }

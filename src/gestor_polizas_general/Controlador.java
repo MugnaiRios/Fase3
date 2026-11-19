@@ -1,8 +1,12 @@
 
 package gestor_polizas_general;
 
+import gestor_polizas_usuario.UsuarioControl;
+import gestor_polizas_usuario.UsuarioVista;
+
 public class Controlador {
     protected Bienvenida vista;
+    protected UsuarioVista usuariosVista;
     public Controlador(Bienvenida vista) {
         this.vista = vista;
         this.eventos();
@@ -15,6 +19,16 @@ public class Controlador {
          //   new MarcasControl(mascasVista);
            // vista.pc.add(mascasVista, "mk");
            // vista.c1.show(vista.pc, "mk");
+      });
+
+      //Usuarios: la pantalla se crea solo la primera vez y despues solo se muestra
+      vista.usuarios.addActionListener(e -> {
+          if (usuariosVista == null) {
+              usuariosVista = new UsuarioVista();
+              new UsuarioControl(usuariosVista);
+              vista.pc.add(usuariosVista, "usuarios");
+          }
+          vista.c1.show(vista.pc, "usuarios");
       });
     }
 }
